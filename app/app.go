@@ -34,16 +34,32 @@ func init() {
 
 		for _, event := range events {
 			if event.Type == linebot.EventTypeMessage {
+
+				log.Print(event.Source.UserID)
+				log.Print(event.Source.RoomID)
+				log.Print(event.Source.GroupID)
+				log.Print(event.Source.GroupID)
+				log.Print(event.Message)
+				log.Print(event.Postback)
+
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.Text)).WithContext(ctx).Do(); err != nil {
-						aelog.Errorf(ctx, "%v", err)
+
+					var selectText = message.Text
+					switch selectText {
+					case NormalMessage:SendNormalMessage(bot, event.ReplyToken, ctx)
+					case CarouselMessage:SendCarouselMessage(bot, event.ReplyToken, ctx)
+					case ImageMessage:SendImageMessage(bot, event.ReplyToken, ctx)
+					case LocationMessage:SendlocationMessage(bot, event.ReplyToken, ctx)
+					case MoreSelect:SendMoreSelectMessage(bot, event.ReplyToken, ctx)
+					default: SendSelectMessage(bot, event.ReplyToken, ctx)
 					}
+
 				}
 			}
 		}
 	})
-
+	
 	http.Handle("/callback", handler)
 }
 
