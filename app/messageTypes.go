@@ -81,19 +81,19 @@ func SendCarouselMessage(bot *linebot.Client, replyToken string, ctx context.Con
 	template := linebot.NewCarouselTemplate(
 		linebot.NewCarouselColumn(
 			imgUrl, "A", "text text text text text text text ",
-			linebot.NewPostbackTemplateAction("選択", "a_shibuya,", "select A"),
+			linebot.NewPostbackTemplateAction("選択", CarouselMessageSelectA, CarouselMessageSelectA),
 		),
 		linebot.NewCarouselColumn(
 			imgUrl, "B", "text text text text text text text ",
-			linebot.NewPostbackTemplateAction("選択", "a_nerima,", "select B"),
+			linebot.NewPostbackTemplateAction("選択", CarouselMessageSelectB, CarouselMessageSelectB),
 		),
 		linebot.NewCarouselColumn(
 			imgUrl, "C", "text text text text text text text ",
-			linebot.NewPostbackTemplateAction("選択", "a_kamakura,", "select C"),
+			linebot.NewPostbackTemplateAction("選択", CarouselMessageSelectC, CarouselMessageSelectC),
 		),
 		linebot.NewCarouselColumn(
 			imgUrl, "D", "text text text text text text text ",
-			linebot.NewPostbackTemplateAction("選択", "a_kamakura,", "select D"),
+			linebot.NewPostbackTemplateAction("選択", CarouselMessageSelectD, CarouselMessageSelectD),
 		),
 	)
 
