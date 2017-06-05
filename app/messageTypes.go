@@ -42,7 +42,7 @@ func SendMoreSelectMessage(bot *linebot.Client, replyToken string, ctx context.C
 		title,
 		titleSub,
 		linebot.NewMessageTemplateAction(NormalMessage, NormalMessage),
-		linebot.NewURITemplateAction("link1", "http://onga.jp/"),
+		linebot.NewURITemplateAction("link1", "https://www.google.co.jp"),
 	)
 
 	messageTitle := "message"
